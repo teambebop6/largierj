@@ -1,0 +1,308 @@
+@import (css) url('https://fonts.googleapis.com/css?family=Montserrat:100,300,500,700');
+
+
+@gold: #d5b476;
+@grey: #4a4a4a;
+
+@textColor: rgba(255,255,255,1);
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+h3{
+  font-family: 'Montserrat', sans-serif;
+  font-size:2rem;
+  font-weight:400;
+}
+
+.clearfix{
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.easing{
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.ui.grid.default-grid{
+  margin-top:8rem;
+
+}
+
+.mediaSection{
+  margin-top: 4%;
+}
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+  margin: 0 2%;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slick-prev, .slick-next{
+  z-index: 100;
+  height: 50px;
+  width: 30px;
+}
+
+.slick-prev{left: 5%}
+.slick-next{right: 5%}
+
+// .default-grid p {
+//   line-height:2rem;
+//   font-size:1.2rem;
+// }
+
+.concertsBlock td{
+  font-size:1.05rem;
+}
+
+.rightContainer{
+  float:right;
+}
+.leftContainer{
+  float:left;
+}
+
+.col-2{
+  display: inline-block;
+  width: 48%;
+  vertical-align: top;
+  margin: auto 1%;
+}
+
+.largierAvatar{
+}
+
+h2.title, p.title{
+  font-family: 'Montserrat', sans-serif;
+  text-transform:uppercase;
+  color: @gold;
+  font-size:2.7rem;
+  font-weight:100;
+}
+
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sectionTitle{
+  width: 100%;
+  margin: 1rem auto 2rem;
+}
+
+.bioParagraph{
+  line-height:2rem;
+  font-size:1rem;
+}
+
+.ui.grid.nav-grid{
+  width:100%;
+
+}
+
+.ui.menu.main-menu{
+  height:58px;
+  border-radius:0 !important;
+  border:none;
+  box-shadow:none;
+
+  .item{
+    font-size:1.3rem;
+    font-weight: 500;
+    &:before{
+      display:none;
+    }
+  }
+}
+
+.headerPicture{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom right;
+  padding-bottom: 3rem;
+  overflow: hidden;
+}
+
+.headerFrame{
+  top:0;left:0;bottom:0;right:0;
+  position:absolute;
+  margin: 3% 2%;
+  border:1px solid @gold;
+  z-index: 10;
+}
+
+.headerContent{
+  overflow:hidden;
+}
+
+.ui.grid.bio-grid{
+  padding-bottom:4rem;
+
+  background:white;
+}
+
+.headerTextContent{
+  // width: 50%;
+  // max-width: 500px;
+  text-align: center;
+  top: 40vh;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+  z-index: 10;
+}
+
+img.logo{
+  max-width: 400px !important;
+  min-width: 200px !important;
+}
+
+.chantalDescription{
+  color:@textColor;
+  font-size: 1rem;
+  font-weight: 100;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,.2);
+  padding: 15px 24%;
+  margin-top: 10px;
+  .easing;
+
+  &:hover{
+    background: rgba(0,0,0,.4);
+  };
+}
+
+.ui.grid.logo-grid{
+  background:white;
+  img{
+    margin-bottom:-3rem;
+  }
+}
+
+.ui.grid.concerts-grid{
+  padding-bottom:4rem;
+
+  .title-row {
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      color: #d5b476;
+      font-size: 2.7rem;
+      font-weight: 100;
+    }
+  }
+
+  .ui.basic.table{
+    > tbody {
+
+      > tr{
+        border:none;
+        > td{
+          border-bottom: 3px solid #e6150e;
+          border-top:none;
+        }
+      }
+    }
+  }
+}
+
+.ui.grid.intro-grid{
+  padding-top:4rem;
+  padding-bottom:4rem;
+  p{
+    font-size: 1.5rem;
+    font-style: italic;
+  }
+}
+
+.ui.grid.flower-grid{
+  background:white;
+  img{
+    margin-top:4rem;
+    margin-bottom:4rem;
+  }
+}
+
+.ui.grid.media-grid{
+  padding-top:4rem;
+  padding-bottom:4rem;
+  background:white;
+}
+.ui.grid.footer-grid{
+  background:white;
+  height:6rem;
+}
+
+
+.ui.grid > .row.title-row{
+  margin-left:1rem;
+}
+
+
+.flower{
+  width:132px;
+  height:132px;
+}
+
+.video-react{display: none;}
+
+@media only screen and (max-width: 900px) {
+  .video-react{display: none;}
+}
+
+@media only screen and (max-width: 768px) {
+  .headerTextContent{
+    top: 50vh;
+    img{
+      width: 80%;
+      fill: @gold;
+    }
+  }
+  .headerPicture{
+    background-position: 73%;
+  }
+  .chantalDescription{
+    padding: 15px 15%;
+  }
+  .col-2{
+    width: 100%;
+    margin: 0 auto 2rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .chantalDescription{
+    padding: 15px;
+  }
+
+}
