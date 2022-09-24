@@ -39,3 +39,4 @@ db.mv.db
 db.trace.db
 application-prod.yml
 logs
+*.jar

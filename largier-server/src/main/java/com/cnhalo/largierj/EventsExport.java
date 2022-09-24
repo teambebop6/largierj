@@ -20,11 +20,12 @@ public class EventsExport {
 
     public static void main(String[] args) {
 
-        String hostname = "46.101.98.207";
+        String hostname = "0.0.0.0";
+        String dbName = "app";
         int port = 27017;
 
         MongoClient mongoClient = new MongoClient(hostname, port);
-        MongoDatabase database = mongoClient.getDatabase("largier_app");
+        MongoDatabase database = mongoClient.getDatabase(dbName);
 
         System.out.println("");
         System.out.println("");
