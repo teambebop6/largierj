@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    defer-datasource-initialization: false
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+jwt:
+  header: Authorization
+  token-start-with: Bearer
+  token-validity-in-seconds: 1800
