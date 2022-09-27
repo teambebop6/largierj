@@ -15,7 +15,7 @@ class Modify extends Component {
         title: '',
         detail: '',
         visible: false,
-        avatar: null,
+        imageURI: null,
       },
     };
 
@@ -28,25 +28,18 @@ class Modify extends Component {
         Authorization: this.props.authorization,
       },
     }).then((res) => {
+      console.log(res);
       this.setState({ item: res.data });
     });
   }
 
-  //
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.state.item !== nextProps.item) {
-  //     return true;
-  //   } else {
-  //     return super.shouldComponentUpdate(nextProps, nextState);
-  //   }
-  // }
-
   // Form submit
-  submit(formData) {
+  submit(data) {
+    // TODO update do not support update imageURI now
     const { history } = this.props;
 
     // Update
-    post(path.join(apiBasePath, `/item/${this.state.item.id}`), formData, {
+    post(path.join(apiBasePath, `/item/${this.state.item.id}`), data, {
       headers: {
         Authorization: this.props.authorization,
       },
@@ -58,11 +51,11 @@ class Modify extends Component {
       });
   }
 
-
   render() {
     return (
       <EditItemForm
         item={this.state.item}
+        history={this.props.history}
         submit={this.submit}
         title="Modify event"
       />

@@ -54,6 +54,22 @@
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.2.0</version>
         <executions>
+<!--          <execution>-->
+<!--            <id>copy-resources</id>-->
+<!--            <phase>generate-resources</phase>-->
+<!--            <goals>-->
+<!--              <goal>copy-resources</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <outputDirectory>${basedir}/../largier-server/target/classes/static</outputDirectory>-->
+<!--              <resources>-->
+<!--                <resource>-->
+<!--                  <directory>${basedir}/../largier-client/build</directory>-->
+<!--                  <filtering>false</filtering>-->
+<!--                </resource>-->
+<!--              </resources>-->
+<!--            </configuration>-->
+<!--          </execution>-->
           <execution>
             <id>copy-resources</id>
             <phase>generate-resources</phase>
@@ -61,7 +77,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/../largier-server/target/classes/static</outputDirectory>
+              <outputDirectory>${basedir}/../largier-server/src/main/resources/static</outputDirectory>
               <resources>
                 <resource>
                   <directory>${basedir}/../largier-client/build</directory>

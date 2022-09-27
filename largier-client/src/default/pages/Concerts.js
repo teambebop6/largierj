@@ -11,7 +11,7 @@ import { I18n } from 'react-i18next';
 
 import { get } from '../../common/helpers/api';
 // Common components
-import ConcertBlock from '../../common/components/ConcertBlock';
+import ConcertImageContainer from './components/ConcertImageContainer';
 // Resources
 import './Home.less';
 import Logo from '../../res/images/logoBlack.svg';
@@ -31,13 +31,15 @@ class Concerts extends Component {
     this.state = {
       upcoming_concerts: [],
       past_concerts: [],
+      // photos: [],
     };
   }
 
-
   componentDidMount() {
     get('/api/concerts/all').then((res) => {
-      this.setState(res.data);
+      this.setState({
+        ...res.data,
+      });
     }).catch(err => err);
     selectLanguage(this.props.locate || 'en');
   }
@@ -74,9 +76,8 @@ class Concerts extends Component {
               <h3>
                 <I18n>{t => t('upcoming-concerts')}</I18n>
               </h3>
-              <ConcertBlock
+              <ConcertImageContainer
                 concerts={this.state.upcoming_concerts}
-                limit={-1}
               />
               <h3>
                 <I18n>{t => t('past-concerts')}</I18n>
@@ -94,9 +95,8 @@ class Concerts extends Component {
                         <h4>
                           { String(year) }
                         </h4>
-                        <ConcertBlock
+                        <ConcertImageContainer
                           concerts={this.state.past_concerts.concerts[year]}
-                          limit={-1}
                         />
                       </div>
                     ))

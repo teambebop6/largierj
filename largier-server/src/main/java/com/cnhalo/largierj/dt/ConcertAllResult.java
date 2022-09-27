@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class ConcertAllResult {
 
-    private List<Concert> upcoming_concerts;
+    private List<Event> upcoming_concerts;
     private ConcertsYears past_concerts;
 
 }

@@ -26,10 +26,13 @@ class Add extends Component {
   }
 
   // Form submit
-  submit(data) {
+  submit(data, imageFile) {
+    const formData = new FormData();
+    formData.append('event', JSON.stringify(data));
+    formData.append('file', imageFile);
     const { history } = this.props;
 
-    post(path.join(apiBasePath, '/add'), data, {
+    post(path.join(apiBasePath, '/add2'), formData, {
       headers: {
         Authorization: this.props.authorization,
       },
@@ -46,6 +49,7 @@ class Add extends Component {
     return (
       <EditItemForm
         submit={this.submit}
+        history={this.props.history}
         title="Create new event"
         item={this.state.item}
       />

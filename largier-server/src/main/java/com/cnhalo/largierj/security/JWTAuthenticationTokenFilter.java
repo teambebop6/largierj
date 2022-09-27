@@ -31,7 +31,6 @@ public class JWTAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-//        printBody(httpServletRequest);
         String requestRri = httpServletRequest.getRequestURI();
         String token = null;
         String bearerToken = httpServletRequest.getHeader(jwtConfig.getHeader());
@@ -50,8 +49,4 @@ public class JWTAuthenticationTokenFilter extends OncePerRequestFilter {
 
     }
 
-    private static void printBody(HttpServletRequest httpServletRequest) throws IOException {
-        String body = IOUtils.toString(httpServletRequest.getReader());
-        System.out.println(body);
-    }
 }

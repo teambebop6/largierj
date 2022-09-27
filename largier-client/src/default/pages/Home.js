@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { Grid, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { I18n } from 'react-i18next';
-import { Player, ControlBar } from 'video-react';
+import { ControlBar, Player } from 'video-react';
 import StructuredData from 'react-google-structured-data';
 import { Fab } from 'react-tiny-fab';
 import 'react-tiny-fab/dist/styles.css';
@@ -19,7 +19,7 @@ import TopLeftLinks from '../../common/components/TopLeftLinks';
 import TopRightLinks from '../../common/components/TopRightLinks';
 import Nav from '../../common/components/Nav';
 import SimpleSlider from '../../common/components/Slider';
-import ConcertBlock from '../../common/components/ConcertBlock';
+import ConcertImageContainer from './components/ConcertImageContainer';
 // Resources
 import './Home.less';
 import Logo from '../../res/images/logoWhite.svg';
@@ -31,7 +31,6 @@ import InstagramIcon from '../../res/images/instagram.svg';
 import i18n from '../../i18n';
 
 import { licenseYear } from '../../config.json';
-
 
 class Home extends Component {
   constructor(props) {
@@ -133,13 +132,13 @@ class Home extends Component {
               <h3>
                 <I18n>{t => t('upcoming-concerts')}</I18n>
               </h3>
-              <ConcertBlock
+              <ConcertImageContainer
                 concerts={this.state.upcoming_concerts}
               />
               <h3>
                 <I18n>{t => t('past-concerts')}</I18n>
               </h3>
-              <ConcertBlock
+              <ConcertImageContainer
                 concerts={this.state.past_concerts}
               />
               <Link to="/concerts" className="link">

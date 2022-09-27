@@ -89,9 +89,9 @@ public class SecurityConfiguration {
             .antMatchers("/api/admin/**")
             .hasRole("ADMIN")
 
-            .antMatchers("/**", "/api/auth/**")
-            .anonymous()
-
+            .antMatchers("/**", "/api/auth/**", "/file/**")
+            .permitAll()
+//            .anonymous()
             .anyRequest()
             .authenticated();
 

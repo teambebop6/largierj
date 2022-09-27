@@ -4,9 +4,10 @@ import com.cnhalo.largierj.config.DBBasedConfig;
 import com.cnhalo.largierj.dt.ConcertAllResult;
 import com.cnhalo.largierj.dt.ConcertGroups;
 import com.cnhalo.largierj.dt.ConcertsYears;
+import com.cnhalo.largierj.dt.Event;
 import com.cnhalo.largierj.dt.Result;
-import com.cnhalo.largierj.model.Concert;
 import com.cnhalo.largierj.repository.ConcertRepository;
+import com.cnhalo.largierj.service.AdminService;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -32,13 +33,16 @@ public class IndexController {
     ConcertRepository concertRepository;
 
     @Autowired
+    AdminService adminService;
+
+    @Autowired
     DBBasedConfig dbBasedConfig;
 
     @GetMapping({"/concerts"})
     public Result<ConcertGroups> findConcertGroups() {
 
-        List<Concert> past = concertRepository.findAllByDateLessThanAndVisibleEqualsOrderByDateDesc(PageRequest.of(0, dbBasedConfig.getPastConcertNum()), getDateOnlyDate(), true);
-        List<Concert> upcoming = concertRepository.findAllByDateGreaterThanEqualAndVisibleEqualsOrderByDateAsc(PageRequest.of(0, dbBasedConfig.getUpcomingConcertNum()), getDateOnlyDate(), true);
+        List<Event> past = adminService.toEvents(concertRepository.findAllByDateLessThanAndVisibleEqualsOrderByDateDesc(PageRequest.of(0, dbBasedConfig.getPastConcertNum()), getDateOnlyDate(), true));
+        List<Event> upcoming = adminService.toEvents(concertRepository.findAllByDateGreaterThanEqualAndVisibleEqualsOrderByDateAsc(PageRequest.of(0, dbBasedConfig.getUpcomingConcertNum()), getDateOnlyDate(), true));
 
         return Result.ok(new ConcertGroups(upcoming, past));
     }
@@ -46,9 +50,9 @@ public class IndexController {
     @GetMapping({"/concerts/all"})
     public Result<ConcertAllResult> findConcertAllResult() {
 
-        List<Concert> upcoming = concertRepository.findAllByDateGreaterThanEqualAndVisibleEqualsOrderByDateAsc(null, getDateOnlyDate(), true);
+        List<Event> upcoming = adminService.toEvents(concertRepository.findAllByDateGreaterThanEqualAndVisibleEqualsOrderByDateAsc(null, getDateOnlyDate(), true));
 
-        List<Concert> past = concertRepository.findAllByDateLessThanAndVisibleEqualsOrderByDateDesc(null, getDateOnlyDate(), true);
+        List<Event> past = adminService.toEvents(concertRepository.findAllByDateLessThanAndVisibleEqualsOrderByDateDesc(null, getDateOnlyDate(), true));
 
         ConcertAllResult concertAllResult = new ConcertAllResult();
         concertAllResult.setUpcoming_concerts(upcoming);
@@ -66,18 +70,18 @@ public class IndexController {
         return calendar.getTime();
     }
 
-    private ConcertsYears getConcertsYears(List<Concert> past) {
+    private ConcertsYears getConcertsYears(List<Event> past) {
         List<Date> years = new ArrayList<>();
         List<String> yearStrings = new ArrayList<>();
-        Map<String, List<Concert>> concerts = new HashMap<>();
-        for (Concert concert : past) {
-            String fullYear = getFullYear(concert.getDate());
+        Map<String, List<Event>> concerts = new HashMap<>();
+        for (Event event : past) {
+            String fullYear = getFullYear(event.getDate());
             if (!yearStrings.contains(fullYear)) {
-                years.add(concert.getDate());
+                years.add(event.getDate());
                 yearStrings.add(fullYear);
             }
-            List<Concert> list = concerts.computeIfAbsent(fullYear, k -> new ArrayList<>());
-            list.add(concert);
+            List<Event> list = concerts.computeIfAbsent(fullYear, k -> new ArrayList<>());
+            list.add(event);
         }
         Collections.sort(years);
         ConcertsYears concertsYears = new ConcertsYears();

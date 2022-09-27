@@ -12,7 +12,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ConcertGroups {
 
-    private List<Concert> upcoming_concerts;
-    private List<Concert> past_concerts;
+    private List<Event> upcoming_concerts;
+    private List<Event> past_concerts;
 
 }

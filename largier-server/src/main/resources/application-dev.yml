@@ -10,4 +10,5 @@ jwt:
 log:
   path: ./logs
   prefix: largier-dev
-
+upload:
+  location: ./upload

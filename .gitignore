@@ -40,3 +40,4 @@ db.trace.db
 application-prod.yml
 logs
 *.jar
+upload

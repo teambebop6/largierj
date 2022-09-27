@@ -20,4 +20,6 @@ public interface ConcertRepository extends JpaRepository<Concert, Long> {
 
     List<Concert> findAllByOrderByVisibleDescDateAsc();
 
+    List<Concert> findAllByAvatarIsNotNull();
+
 }

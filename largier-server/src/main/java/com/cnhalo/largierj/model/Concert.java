@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
@@ -27,11 +26,14 @@ public class Concert {
     private String venue;
     private Date date;
     private String link;
+    private String avatar;
+    private Integer avatarWidth;
+    private Integer avatarHeight;
     private String type;
-    private Integer sortOrder;
+    private Integer sortOrder = -1;
     private Boolean visible;
-    private Date creationDate;
-    private Date lastModifiedDate;
+    private Date creationDate = new Date();
+    private Date lastModifiedDate = new Date();
 
     @Id
     @Column(name = "id")

@@ -8,7 +8,6 @@ import { Redirect, Route } from 'react-router-dom';
 
 const AdminRouteContainer = ({ component: Component, auth, ...rest }) => {
   const isAuthenticated = auth && auth.token && auth.role === 'admin';
-  // TODO if auth is null read from store
   return (
     <Route
       {...rest}

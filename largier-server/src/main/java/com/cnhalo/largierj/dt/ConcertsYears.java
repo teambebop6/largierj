@@ -12,6 +12,6 @@ import lombok.Data;
 public class ConcertsYears {
 
     private List<String> years;
-    private Map<String, List<Concert>> concerts;
+    private Map<String, List<Event>> concerts;
 
 }

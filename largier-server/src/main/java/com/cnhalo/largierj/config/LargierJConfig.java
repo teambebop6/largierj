@@ -4,6 +4,8 @@ import com.cnhalo.largierj.constant.ConfigConstant;
 import com.cnhalo.largierj.model.ConfigurationItem;
 import com.cnhalo.largierj.repository.ConfigurationRepository;
 import com.cnhalo.largierj.security.JWTAuthenticationTokenFilter;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +19,13 @@ public class LargierJConfig {
 
     @Autowired
     private ConfigurationRepository configurationRepository;
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return objectMapper;
+    }
 
     @Bean
     public DBBasedConfig dbBasedConfig() {

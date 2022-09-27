@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Form, Button, Checkbox } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import ImageUploading from 'react-images-uploading';
 
 import TopBar from '../../../../common/components/TopBar';
 
@@ -15,33 +16,22 @@ class EditItemForm extends Component {
   constructor(props) {
     super(props);
 
-    this.onFileChange = this.onFileChange.bind(this);
     this.onCheckboxChange = this.onCheckboxChange.bind(this);
     this.onChange = this.onChange.bind(this);
     this.submit = this.submit.bind(this);
-
+    this.cancel = this.submit.bind(this);
+    this.onChange2 = this.onChange2.bind(this);
     this.state = {
-      files: [],
+      images: [],
     };
   }
 
-  onFileChange(e) {
-    const { files } = this.state;
-
-    let file = files.find(f => Object.keys(f)[0] === e.target.name);
-
-    if (file === undefined) {
-      file = {};
-      file[e.target.name] = e.target.files[0];
-
-      files.push(file);
-    } else {
-      file[e.target.name] = e.target.files[0];
-      const index = files.indexOf(file);
-      files[index] = file;
-    }
-
-    this.setState({ files });
+  onChange2(imageList, addUpdateIndex) {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    this.setState({
+      images: imageList,
+    });
   }
 
   onCheckboxChange(e) {
@@ -56,27 +46,16 @@ class EditItemForm extends Component {
 
   submit(e) {
     e.preventDefault();
-
-    const formData = new FormData();
-
-    if (this.typeField && this.typeField.value) {
-      this.props.item.type = this.typeField.value;
-    }
-
-    formData.append('item', JSON.stringify(this.props.item));
-
-    // Add files
-    this.state.files.forEach((file) => {
-      const key = Object.keys(file)[0];
-      formData.append(key, file[key]);
-    });
-
-    // Refer to parent handler
-    // TODO
-    // this.props.submit(formData);
-    this.props.submit(this.props.item);
+    const imageFile = (this.state.images && this.state.images[0]) ?
+      this.state.images[0].file :
+      null;
+    this.props.submit(this.props.item, imageFile);
   }
 
+  cancel() {
+    const { history } = this.props;
+    history.goBack();
+  }
 
   render() {
     const { item } = this.props;
@@ -91,7 +70,7 @@ class EditItemForm extends Component {
 
               <h3>{this.props.title}</h3>
 
-              <Form encType="multipart/form-data" onSubmit={this.submit}>
+              <Form encType="multipart/form-data">
                 <input
                   name="id"
                   type="hidden"
@@ -147,7 +126,80 @@ class EditItemForm extends Component {
                     this.typeField = field;
                   }}
                 />
-
+                <Form.Field>
+                  {
+                    this.props.item.imageURI &&
+                    <img
+                      className="ui fluid image bordered"
+                      src={this.props.item.imageURI}
+                      alt=""
+                    />
+                  }
+                  {
+                    !this.props.item.imageURI &&
+                    <ImageUploading
+                      multiple
+                      value={this.state.images}
+                      onChange={this.onChange2}
+                      maxNumber={1}
+                      dataURLKey="data_url"
+                      acceptType={['jpg', 'png', 'jpeg']}
+                    >
+                      {({
+                          imageList,
+                          onImageUpload,
+                          onImageUpdate,
+                          onImageRemove,
+                          // isDragging,
+                          dragProps,
+                        }) => (
+                        // write your building UI
+                        <div>
+                          {
+                            (!this.props.item.imageURI &&
+                              (!this.state.images || this.state.images.length === 0)) &&
+                            <button
+                              className="ui button right floated"
+                              onClick={onImageUpload}
+                              {...dragProps}
+                            >
+                              Choose picture
+                            </button>
+                          }
+                          {imageList.map((image, index) => (
+                            // eslint-disable-next-line react/no-array-index-key
+                            <div key={index} className="image-item">
+                              <img
+                                className="ui fluid image bordered"
+                                src={image.data_url}
+                                alt=""
+                              />
+                              <div
+                                className="ui basic buttons right floated"
+                                style={{
+                                  marginTop: 10,
+                                }}
+                              >
+                                <button
+                                  className="ui button"
+                                  onClick={() => onImageUpdate(index)}
+                                >
+                                  Update
+                                </button>
+                                <button
+                                  className="ui button"
+                                  onClick={() => onImageRemove(index)}
+                                >
+                                  Remove
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </ImageUploading>
+                  }
+                </Form.Field>
                 <Form.Field>
                   <Checkbox
                     slider
@@ -158,13 +210,13 @@ class EditItemForm extends Component {
                     onChange={this.onCheckboxChange}
                   />
                 </Form.Field>
+                <div className="ui inverted divider" />
                 <div className="ui buttons">
-                  <Button type="submit" className="ui primary button">Submit</Button>
+                  <Button className="ui primary button" onClick={this.submit}>Submit</Button>
                   <div className="or" />
-                  <button type="cancel" className="ui button">Cancel</button>
+                  <button type="cancel" className="ui button" onClick={this.cancel}>Cancel</button>
                 </div>
               </Form>
-
             </div>
           </div>
         </div>
@@ -177,6 +229,7 @@ EditItemForm.propTypes = {
   title: PropTypes.string.isRequired,
   item: PropTypes.object.isRequired,
   submit: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default EditItemForm;
