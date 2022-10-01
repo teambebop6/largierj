@@ -23,7 +23,7 @@ class Modify extends Component {
   }
 
   componentDidMount() {
-    get(path.join(apiBasePath, `/item/${this.props.match.params.id}`), {
+    get(path.join(apiBasePath, `/item/${this.props.match.params.id}?update=true`), {
       headers: {
         Authorization: this.props.authorization,
       },
@@ -34,12 +34,16 @@ class Modify extends Component {
   }
 
   // Form submit
-  submit(data) {
+  submit(data, imageFile, onFail) {
     // TODO update do not support update imageURI now
     const { history } = this.props;
 
+    const formData = new FormData();
+    formData.append('event', JSON.stringify(data));
+    formData.append('file', imageFile);
+
     // Update
-    post(path.join(apiBasePath, `/item/${this.state.item.id}`), data, {
+    post(path.join(apiBasePath, `/item/${this.state.item.id}`), formData, {
       headers: {
         Authorization: this.props.authorization,
       },
@@ -47,6 +51,12 @@ class Modify extends Component {
       .then((res) => {
         if (res.ok) {
           history.push('../');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        if (onFail) {
+          onFail();
         }
       });
   }

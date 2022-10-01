@@ -28,7 +28,7 @@ class ListItemRow extends Component {
     // formData.append('item', JSON.stringify(item));
 
     // Update
-    post(path.join(apiBasePath, `/item/${data.item.id}`), item, {
+    post(path.join(apiBasePath, `/item/visible/${data.item.id}`), item, {
       headers: {
         Authorization: this.props.authorization,
       },

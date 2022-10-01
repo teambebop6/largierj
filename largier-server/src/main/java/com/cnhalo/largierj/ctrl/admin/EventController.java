@@ -42,12 +42,6 @@ public class EventController {
     }
 
     @PostMapping(value = "/add")
-    public ResponseEntity<Result<Event>> addEvent(@RequestBody Event event) throws JsonProcessingException {
-        Event added = adminService.createConcert(event, null);
-        return ResponseEntity.ok(Result.<Event>builder().ok(true).data(added).build());
-    }
-
-    @PostMapping(value = "/add2")
     public ResponseEntity<Result<Event>> addEventNew(@RequestParam(value = "file", required = false) MultipartFile file,
         @RequestParam("event") Event event) {
         ImageSavedInfo imageSavedInfo = file == null ?  null : fileUploadService.checkAndSaveImage(file);
@@ -56,13 +50,21 @@ public class EventController {
     }
 
     @GetMapping("/item/{id}")
-    public ResponseEntity<Result<Event>> findEvent(@PathVariable @NotNull Long id) {
-        return ResponseEntity.ok(Result.<Event>builder().ok(true).data(adminService.findEvent(id)).build());
+    public ResponseEntity<Result<Event>> findEvent(@PathVariable @NotNull Long id, @RequestParam(value = "update", required = false) Boolean update) {
+        return ResponseEntity.ok(Result.<Event>builder().ok(true).data(adminService.findEvent(id, update)).build());
     }
 
-    @PostMapping("/item/{id}")
-    public ResponseEntity<Result<Event>> updateEvent(@PathVariable @NotNull Long id, @RequestBody Event event) {
-        Event saved = adminService.updateConcert(id, event);
+    @PostMapping(value = "/item/{id}")
+    public ResponseEntity<Result<Event>> updateEvent(@PathVariable @NotNull Long id, @RequestParam(value = "file", required = false) MultipartFile file,
+        @RequestParam("event") Event event) {
+        ImageSavedInfo imageSavedInfo = file == null ?  null : fileUploadService.checkAndSaveImage(file);
+        Event updated = adminService.updateConcert(id, event, imageSavedInfo);
+        return ResponseEntity.ok(Result.<Event>builder().ok(true).data(updated).build());
+    }
+
+    @PostMapping("/item/visible/{id}")
+    public ResponseEntity<Result<Event>> updateEventVisible(@PathVariable @NotNull Long id, @RequestBody Event event) {
+        Event saved = adminService.updateConcert(id, event, null);
         return ResponseEntity.ok(Result.<Event>builder().ok(true).data(saved).build());
     }
 

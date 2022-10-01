@@ -38,6 +38,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     /**
      * Check and save images
+     *
      * @param files Raw files uploaded
      * @return List of file uris
      */
@@ -83,15 +84,18 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     @Override
     public void cleanupUnusedFiles() {
-        List<Concert> concerts =  adminService.getConcertRepository().findAllByAvatarIsNotNull();
+        List<Concert> concerts = adminService.getConcertRepository().findAllByAvatarIsNotNull();
         List<String> avatars = concerts.stream().map(Concert::getAvatar).collect(Collectors.toList());
         Path path = Paths.get(uploadConfig.getLocation());
         File[] files = path.toFile().listFiles();
         if (files != null) {
+            List<String> fileNamesDefault = uploadConfig.getDefaultImageSavedInfos().stream().map(ImageSavedInfo::getAvatar).collect(
+                Collectors.toList());
             for (File file : files) {
                 String fileName = file.getName();
                 String fileNameEncoded = Base64.getEncoder().encodeToString(fileName.getBytes());
-                if (!avatars.contains(fileNameEncoded)) {
+                // TODO do not delete default images
+                if (!fileNamesDefault.contains(fileNameEncoded) && !avatars.contains(fileNameEncoded)) {
                     file.delete();
                     log.info("Deleted " + fileName);
                 }

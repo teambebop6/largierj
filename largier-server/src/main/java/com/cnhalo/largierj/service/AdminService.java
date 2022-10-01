@@ -48,11 +48,15 @@ public class AdminService {
     }
 
     public Event findEvent(Long id) {
+        return findEvent(id, null);
+    }
+
+    public Event findEvent(Long id, Boolean update) {
         Optional<Concert> result = concertRepository.findById(id);
         if (!result.isPresent()) {
             throw new ResourceNotFoundException();
         }
-        return toEvent(result.get());
+        return toEvent(result.get(), update);
     }
 
     public List<Event> findAllEvents() {
@@ -99,7 +103,7 @@ public class AdminService {
         return toEvent(concertRepository.save(concert));
     }
 
-    public Event updateConcert(Long id, Event toUpdated) {
+    public Event updateConcert(Long id, Event toUpdated, ImageSavedInfo imageSavedInfo) {
         Concert old = concertRepository.findById(id).get();
         if (StringUtils.isNotBlank(toUpdated.getTitle())) {
             old.setTitle(toUpdated.getTitle());
@@ -118,6 +122,15 @@ public class AdminService {
         }
         old.setVisible(toUpdated.getVisible());
         old.setLastModifiedDate(new Date());
+        if (imageSavedInfo != null) {
+            old.setAvatar(imageSavedInfo.getAvatar());
+            old.setAvatarWidth(imageSavedInfo.getWidth());
+            old.setAvatarHeight(imageSavedInfo.getHeight());
+        } else if (toUpdated.getImageURI() == null) {
+            old.setAvatar(null);
+            old.setAvatarWidth(-1);
+            old.setAvatarHeight(-1);
+        }
         return toEvent(concertRepository.save(old));
     }
 
@@ -137,6 +150,10 @@ public class AdminService {
     }
 
     public Event toEvent(Concert concert) {
+        return toEvent(concert, null);
+    }
+
+    public Event toEvent(Concert concert, Boolean update) {
         Event event = new Event();
         event.setId(concert.getId());
         event.setTitle(concert.getTitle());
@@ -148,7 +165,7 @@ public class AdminService {
             event.setImageURI(IMG_URI_PREFIX + concert.getAvatar());
             event.setImageWidth(concert.getAvatarWidth());
             event.setImageHeight(concert.getAvatarHeight());
-        } else {
+        } else if (update != Boolean.TRUE) {
             ImageSavedInfo imageSavedInfo = randomDefaultImageURI();
             event.setImageURI(IMG_URI_PREFIX + imageSavedInfo.getAvatar());
             event.setImageWidth(imageSavedInfo.getWidth());

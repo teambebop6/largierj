@@ -26,13 +26,13 @@ class Add extends Component {
   }
 
   // Form submit
-  submit(data, imageFile) {
+  submit(data, imageFile, onFail) {
     const formData = new FormData();
     formData.append('event', JSON.stringify(data));
     formData.append('file', imageFile);
     const { history } = this.props;
 
-    post(path.join(apiBasePath, '/add2'), formData, {
+    post(path.join(apiBasePath, '/add'), formData, {
       headers: {
         Authorization: this.props.authorization,
       },
@@ -42,7 +42,12 @@ class Add extends Component {
           history.push('./');
         }
       })
-      .catch(err => err);
+      .catch((err) => {
+        console.error(err);
+        if (onFail) {
+          onFail();
+        }
+      });
   }
 
   render() {

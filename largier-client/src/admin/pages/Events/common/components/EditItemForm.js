@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Form, Button, Checkbox } from 'semantic-ui-react';
+import { Form, Button, Checkbox, Loader, Dimmer } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import ImageUploading from 'react-images-uploading';
 
@@ -20,15 +20,17 @@ class EditItemForm extends Component {
     this.onChange = this.onChange.bind(this);
     this.submit = this.submit.bind(this);
     this.cancel = this.submit.bind(this);
-    this.onChange2 = this.onChange2.bind(this);
+    this.onImageChange = this.onImageChange.bind(this);
+    this.onDeleteCurrent = this.onDeleteCurrent.bind(this);
     this.state = {
       images: [],
+      loading: false,
+      loadingText: 'Loading',
     };
   }
 
-  onChange2(imageList, addUpdateIndex) {
+  onImageChange(imageList) {
     // data for submit
-    console.log(imageList, addUpdateIndex);
     this.setState({
       images: imageList,
     });
@@ -44,12 +46,27 @@ class EditItemForm extends Component {
     this.forceUpdate();
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  onDeleteCurrent() {
+    this.props.item.imageURI = null;
+    this.forceUpdate();
+  }
+
   submit(e) {
     e.preventDefault();
     const imageFile = (this.state.images && this.state.images[0]) ?
       this.state.images[0].file :
       null;
-    this.props.submit(this.props.item, imageFile);
+    this.setState({
+      loading: true,
+      loadingText: 'Saving',
+    });
+    this.props.submit(this.props.item, imageFile, () => {
+      this.setState({
+        loading: false,
+        loadingText: 'Saving',
+      });
+    });
   }
 
   cancel() {
@@ -63,7 +80,9 @@ class EditItemForm extends Component {
     return (
       <div>
         <TopBar />
-
+        <Dimmer active={this.state.loading} page>
+          <Loader inverted>{this.state.loadingText}</Loader>
+        </Dimmer>
         <div className="ui page grid">
           <div className="two column row">
             <div className="column">
@@ -129,18 +148,22 @@ class EditItemForm extends Component {
                 <Form.Field>
                   {
                     this.props.item.imageURI &&
-                    <img
-                      className="ui fluid image bordered"
-                      src={this.props.item.imageURI}
-                      alt=""
-                    />
+                    (
+                      <div>
+                        <img
+                          className="ui fluid image bordered"
+                          src={this.props.item.imageURI}
+                          alt=""
+                        />
+                      </div>
+                    )
                   }
                   {
                     !this.props.item.imageURI &&
                     <ImageUploading
                       multiple
                       value={this.state.images}
-                      onChange={this.onChange2}
+                      onChange={this.onImageChange}
                       maxNumber={1}
                       dataURLKey="data_url"
                       acceptType={['jpg', 'png', 'jpeg']}
@@ -198,6 +221,17 @@ class EditItemForm extends Component {
                         </div>
                       )}
                     </ImageUploading>
+                  }
+                </Form.Field>
+                <Form.Field>
+                  {
+                    this.props.item.imageURI &&
+                    <button
+                      className="ui button red right floated"
+                      onClick={this.onDeleteCurrent}
+                    >
+                      Delete picture
+                    </button>
                   }
                 </Form.Field>
                 <Form.Field>
