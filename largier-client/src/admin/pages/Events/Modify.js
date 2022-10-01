@@ -27,8 +27,7 @@ class Modify extends Component {
       headers: {
         Authorization: this.props.authorization,
       },
-    }).then(() => {
-      // console.log(res);
+    }).then((res) => {
       this.setState({ item: res.data });
     });
   }
