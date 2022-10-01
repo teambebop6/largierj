@@ -27,8 +27,8 @@ class Modify extends Component {
       headers: {
         Authorization: this.props.authorization,
       },
-    }).then((res) => {
-      console.log(res);
+    }).then(() => {
+      // console.log(res);
       this.setState({ item: res.data });
     });
   }
@@ -53,8 +53,8 @@ class Modify extends Component {
           history.push('../');
         }
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
+        // console.error(err);
         if (onFail) {
           onFail();
         }

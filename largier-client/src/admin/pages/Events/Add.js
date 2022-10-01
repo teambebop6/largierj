@@ -42,8 +42,8 @@ class Add extends Component {
           history.push('./');
         }
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
+        // console.error(err);
         if (onFail) {
           onFail();
         }
