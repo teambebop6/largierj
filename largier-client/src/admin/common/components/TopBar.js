@@ -2,9 +2,9 @@
  * Created by Henry Huang.
  */
 import React, { Component } from 'react';
-import { Menu, Icon, Image } from 'semantic-ui-react';
+import { Menu, Icon, Image, Button } from 'semantic-ui-react';
 import { push } from 'react-router-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Logo from '../../../res/images/logo.png';
 
 
@@ -13,19 +13,15 @@ const logout = () => {
   push('/login');
 };
 
-export default class TopBar extends Component {
+class TopBar extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.handleItemClick = this.handleItemClick.bind(this);
-  }
-
-  handleItemClick(e, { name }) {
-    this.setState({ activeItem: name });
   }
 
   render() {
-    const { activeItem } = this.state;
+    const { location } = this.props;
+    const { pathname } = location;
 
     return (
       <Menu size="large" stackable>
@@ -35,8 +31,7 @@ export default class TopBar extends Component {
 
         <Menu.Item
           name="events"
-          active={activeItem === 'events'}
-          onClick={this.handleItemClick}
+          active={pathname.startsWith('/admin/events/')}
           as={Link}
           to="/admin/events/"
         >
@@ -44,14 +39,24 @@ export default class TopBar extends Component {
         </Menu.Item>
         <Menu.Item
           name="configuration"
-          active={activeItem === 'configuration'}
-          onClick={this.handleItemClick}
+          active={pathname.startsWith('/admin/configuration/')}
           as={Link}
           to="/admin/configuration/"
         >
           Configuration
         </Menu.Item>
         <Menu.Menu position="right">
+          {
+            pathname === '/admin/events/' &&
+            (
+                <Menu.Item
+                  as={Link}
+                  to="/admin/events/add"
+                >
+                  <Button primary>Create New</Button>
+                </Menu.Item>
+            )
+          }
           <Menu.Item
             as={Link}
             to="/"
@@ -73,3 +78,5 @@ export default class TopBar extends Component {
     );
   }
 }
+
+export default withRouter(TopBar);

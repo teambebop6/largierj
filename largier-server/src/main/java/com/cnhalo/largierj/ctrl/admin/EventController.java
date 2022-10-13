@@ -3,10 +3,13 @@ package com.cnhalo.largierj.ctrl.admin;
 import com.cnhalo.largierj.dt.Event;
 import com.cnhalo.largierj.dt.ImageSavedInfo;
 import com.cnhalo.largierj.dt.Result;
+import com.cnhalo.largierj.dt.UpdateVisibleCommand;
+import com.cnhalo.largierj.model.Concert;
 import com.cnhalo.largierj.service.AdminService;
 import com.cnhalo.largierj.service.FileUploadService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.List;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,15 +65,15 @@ public class EventController {
         return ResponseEntity.ok(Result.<Event>builder().ok(true).data(updated).build());
     }
 
-    @PostMapping("/item/visible/{id}")
-    public ResponseEntity<Result<Event>> updateEventVisible(@PathVariable @NotNull Long id, @RequestBody Event event) {
-        Event saved = adminService.updateConcert(id, event, null);
-        return ResponseEntity.ok(Result.<Event>builder().ok(true).data(saved).build());
+    @PostMapping("/visible")
+    public ResponseEntity<Result<List<Event>>> updateEventVisible(@RequestBody @Valid UpdateVisibleCommand command) {
+        adminService.updateConcertsVisible(command.getIds(), command.isVisible());
+        return ResponseEntity.ok(Result.<List<Event>>builder().ok(true).build());
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<Result<Event>> deleteEvent(@RequestBody Event event) {
-        adminService.getConcertRepository().deleteById(event.getId());
+    public ResponseEntity<Result<Event>> deleteEvent(@RequestBody List<Long> ids) {
+        adminService.getConcertRepository().deleteAllById(ids);
         return ResponseEntity.ok(Result.<Event>builder().ok(true).build());
     }
 

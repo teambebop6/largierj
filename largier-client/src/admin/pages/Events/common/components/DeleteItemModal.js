@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
-import { deleteEvent } from '../../../../modules/event';
+import { deleteEvents } from '../../../../modules/event';
 
 class DeleteItemModal extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class DeleteItemModal extends Component {
   }
 
   confirm() {
-    this.props.deleteEvent(this.props.itemId).then(() => {
+    this.props.deleteEvents([this.props.itemId]).then(() => {
       this.props.itemDeleted();
       this.props.close();
     }).catch(() => {
@@ -71,7 +71,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  deleteEvent,
+  deleteEvents,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeleteItemModal);

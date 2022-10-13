@@ -22,4 +22,6 @@ public interface ConcertRepository extends JpaRepository<Concert, Long> {
 
     List<Concert> findAllByAvatarIsNotNull();
 
+    List<Concert> findAllByIdIn(List<Long> ids);
+
 }

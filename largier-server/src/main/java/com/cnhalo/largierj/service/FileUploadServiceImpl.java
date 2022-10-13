@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -105,6 +106,12 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     private static boolean isImageFile(MultipartFile file) {
         return Objects.requireNonNull(file.getContentType()).startsWith("image");
+    }
+
+    public static void main(String[] args) throws IOException {
+        File file = new File("/Users/henry/dev/workspace/github/largierj/upload/default-avatar-1.jpg");
+        System.out.println(Math.round((Files.size(file.toPath()) * 100) / 1000) / 100.0);
+        System.out.println(file);
     }
 
 }

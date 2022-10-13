@@ -17,17 +17,13 @@ const initialState = {
   isFetching: false,
 };
 
-export const deleteEvent = id => (dispatch, getState) => {
+export const deleteEvents = ids => (dispatch, getState) => {
   const authorization = `Bearer ${getState().auth.token}`;
   dispatch({
     type: DELETE_REQUESTED,
-    payload: {
-      id,
-    },
+    payload: ids,
   });
-  return post('/api/admin/events/delete', {
-    id,
-  }, {
+  return post('/api/admin/events/delete', ids, {
     headers: {
       Authorization: authorization,
     },
@@ -45,28 +41,52 @@ export const deleteEvent = id => (dispatch, getState) => {
   });
 };
 
+export const showEvents = ids => (dispatch, getState) => {
+  const authorization = `Bearer ${getState().auth.token}`;
+  return post('/api/admin/events/visible', {
+    ids,
+    visible: true,
+  }, {
+    headers: {
+      Authorization: authorization,
+    },
+  }).catch(console.error);
+};
+
+export const hideEvents = ids => (dispatch, getState) => {
+  const authorization = `Bearer ${getState().auth.token}`;
+  return post('/api/admin/events/visible', {
+    ids,
+    visible: false,
+  }, {
+    headers: {
+      Authorization: authorization,
+    },
+  }).catch(console.error);
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case DELETE_REQUESTED: {
-      const { id } = action.payload;
+      const { ids } = action.payload;
       return {
         ...state,
         isDeleting: true,
-        idDeleting: id,
+        idsDeleting: ids,
       };
     }
     case DELETED_SUCCESS:
       return {
         ...state,
         isDeleting: false,
-        idDeleting: null,
+        idsDeleting: null,
       };
     case DELETED_FAILURE: {
       const { errors } = action.payload;
       return {
         ...state,
         isDeleting: false,
-        idDeleting: null,
+        idsDeleting: null,
         errors,
       };
     }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import path from 'path';
 import moment from 'moment';
-import { Checkbox, Button } from 'semantic-ui-react';
+import { Checkbox, Button, Table, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { post } from '../../../../../common/helpers/api';
 import { apiBasePath } from '../globals';
@@ -22,13 +22,14 @@ class ListItemRow extends Component {
   visibilityChange(e, data) {
     const item = {
       visible: data.checked,
+      ids: [data.item.id],
     };
 
     // const formData = new FormData();
     // formData.append('item', JSON.stringify(item));
 
     // Update
-    post(path.join(apiBasePath, `/item/visible/${data.item.id}`), item, {
+    post(path.join(apiBasePath, 'visible'), item, {
       headers: {
         Authorization: this.props.authorization,
       },
@@ -46,45 +47,49 @@ class ListItemRow extends Component {
     const { item } = this.props;
 
     return (
-      <tr>
-        <td>
+      <Table.Row>
+        <Table.Cell collapsing>
+          <Checkbox
+            item={item}
+            onChange={this.props.onSelected}
+            checked={this.props.checked}
+          />
+        </Table.Cell>
+        <Table.Cell>
           {item.title}
-        </td>
-        <td>
+        </Table.Cell>
+        <Table.Cell>
           {item.location}
-        </td>
-        <td>
+        </Table.Cell>
+        <Table.Cell>
           {item.venue}
-        </td>
-        <td>
+        </Table.Cell>
+        <Table.Cell>
           {item.link}
-        </td>
-        <td>
+        </Table.Cell>
+        <Table.Cell>
           {moment(item.date).format('LLLL')}
-        </td>
+        </Table.Cell>
 
-        <td>
+        <Table.Cell>
           <Checkbox
             slider
             checked={item.visible}
             item={item}
             onChange={this.visibilityChange}
           />
-        </td>
-        <td>
-          <Link to={`./modify/${item.id}`} className="ui icon button">
-            <i className="write icon" />
-          </Link>
-
-          <Button
-            className="red icon remove-item"
-            onClick={this.onDeleteItem}
-          >
-            <i className="remove icon" />
-          </Button>
-
-        </td>
-      </tr>
+        </Table.Cell>
+        <Table.Cell>
+          <Button.Group>
+            <Link to={`./modify/${item.id}`} className="ui icon button">
+              <i className="write icon" />
+            </Link>
+            <Button icon onClick={this.onDeleteItem} color="red">
+              <Icon className="remove icon" />
+            </Button>
+          </Button.Group>
+        </Table.Cell>
+      </Table.Row>
     );
   }
 }
@@ -97,6 +102,8 @@ ListItemRow.propTypes = {
   item: PropTypes.object.isRequired,
   authorization: PropTypes.string.isRequired,
   deleteItem: PropTypes.func.isRequired,
+  onSelected: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(ListItemRow);
