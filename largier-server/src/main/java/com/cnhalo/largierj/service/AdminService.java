@@ -103,6 +103,14 @@ public class AdminService {
         return toEvent(concertRepository.save(concert));
     }
 
+    public void updateConcertsVisible(List<Long> ids, boolean visible) {
+        List<Concert> concerts = concertRepository.findAllByIdIn(ids);
+        concerts.forEach(c -> {
+            c.setVisible(visible);
+        });
+        concertRepository.saveAllAndFlush(concerts);
+    }
+
     public Event updateConcert(Long id, Event toUpdated, ImageSavedInfo imageSavedInfo) {
         Concert old = concertRepository.findById(id).get();
         if (StringUtils.isNotBlank(toUpdated.getTitle())) {

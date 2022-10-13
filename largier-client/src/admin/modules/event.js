@@ -50,7 +50,7 @@ export const showEvents = ids => (dispatch, getState) => {
     headers: {
       Authorization: authorization,
     },
-  }).catch(console.error);
+  });
 };
 
 export const hideEvents = ids => (dispatch, getState) => {
@@ -62,7 +62,7 @@ export const hideEvents = ids => (dispatch, getState) => {
     headers: {
       Authorization: authorization,
     },
-  }).catch(console.error);
+  });
 };
 
 export default (state = initialState, action) => {

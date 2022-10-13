@@ -34,7 +34,6 @@ class HandleMultipleItemsModal extends Component {
         break;
     }
     if (eventHandler) {
-      console.log(eventHandler);
       eventHandler(this.props.items.map(item => item.id)).then(() => {
         this.props.onEventFinished();
         this.props.close();
