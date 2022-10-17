@@ -41,3 +41,7 @@ CREATE TABLE if not exists configuration_item (
 ALTER TABLE concert ADD COLUMN avatar VARCHAR2(64);
 ALTER TABLE concert ADD COLUMN avatar_width INT DEFAULT -1;
 ALTER TABLE concert ADD COLUMN avatar_height INT DEFAULT -1;
+
+----- updated 2022.10.17
+ALTER TABLE concert ALTER COLUMN location VARCHAR2(64) NULL;
+ALTER TABLE concert ALTER COLUMN venue VARCHAR2(64) NULL;

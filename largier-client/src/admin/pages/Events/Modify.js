@@ -50,6 +50,8 @@ class Modify extends Component {
       .then((res) => {
         if (res.ok) {
           history.push('../');
+        } else {
+          alert(res.errors);
         }
       })
       .catch(() => {
