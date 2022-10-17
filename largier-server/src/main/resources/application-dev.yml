@@ -12,3 +12,5 @@ log:
   prefix: largier-dev
 upload:
   location: ./upload
+logging:
+  config: /Users/henry/dev/workspace/github/largierj/support/logback-spring.xml
