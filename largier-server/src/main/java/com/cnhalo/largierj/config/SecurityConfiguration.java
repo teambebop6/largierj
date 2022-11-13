@@ -86,6 +86,9 @@ public class SecurityConfiguration {
             .and()
             .authorizeRequests()
 
+            .antMatchers("/hc")
+            .permitAll()
+
             .antMatchers("/api/admin/**")
             .hasRole("ADMIN")
 
