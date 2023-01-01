@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: false
+    defer-datasource-initialization: false
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+jwt:
+  header: Authorization
+  token-start-with: Bearer
+  token-validity-in-seconds: 1800
+upload:
+  default-avatar-file-names:
+    - default-avatar-1.jpg
+    - default-avatar-2.jpg
+    - default-avatar-3.jpg
+    - default-avatar-4.jpg
+  default-image-saved-infos:
+    - avatar: ZGVmYXVsdC1hdmF0YXItMS5qcGc=
+      width: 900
+      height: 900
+    - avatar: ZGVmYXVsdC1hdmF0YXItMi5qcGc=
+      width: 1900
+      height: 1268
+    - avatar: ZGVmYXVsdC1hdmF0YXItMy5qcGc=
+      width: 1800
+      height: 999
+    - avatar: ZGVmYXVsdC1hdmF0YXItNC5qcGc=
+      width: 900
+      height: 506

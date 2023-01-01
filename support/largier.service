@@ -1,0 +1,17 @@
+[Unit]
+Description=largier
+After=network.target
+StartLimitInterval=200
+StartLimitBurst=5
+
+[Service]
+User=root
+Group=root
+ExecStart=/app/largier/bin/largier-run.sh
+SuccessExitStatus=143
+Restart=always
+RestartSec=30
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
