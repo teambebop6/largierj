@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Publish
         uses: nogsantos/scp-deploy@master
-        if: github.ref =~ 'refs/heads/release/*'
+        if: contains(github.ref, refs/heads/release)
         with:
           src: ./largier-server/target/largier-run.jar
           host: ${{ secrets.DEPLOY_HOST }}
