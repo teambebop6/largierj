@@ -6,7 +6,8 @@
 	<modules>
     <module>largier-client</module>
 		<module>largier-server</module>
-	</modules>
+    <module>app-cards</module>
+  </modules>
   <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -15,7 +16,7 @@
 	</parent>
 	<groupId>com.cnhalo</groupId>
 	<artifactId>largierj</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${version}</version>
 	<name>largierj</name>
 	<description>Java version of Largier</description>
 

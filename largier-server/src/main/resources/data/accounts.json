@@ -1,0 +1,304 @@
+[
+  {
+    "name": "spdb",
+    "type": "spdb",
+    "title": "浦发",
+    "billDate": 1,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 21
+    },
+    "paymentMethod": "ap",
+    "swipe": true
+  },
+  {
+    "name": "cmb",
+    "type": "cmb",
+    "title": "招行",
+    "billDate": 14,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 2
+    },
+    "paymentMethod": "ap",
+    "order": 2,
+    "swipe": true
+  },
+  {
+    "name": "boc",
+    "type": "boc",
+    "title": "UE白金",
+    "billDate": 24,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 18
+    },
+    "paymentMethod": "ap"
+  },
+  {
+    "name": "boc-2",
+    "type": "boc",
+    "title": "王者荣耀卡",
+    "billDate": 24,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 18
+    },
+    "paymentMethod": "ap",
+    "swipe": true
+  },
+  {
+    "name": "citi",
+    "type": "citi",
+    "title": "花旗",
+    "billDate": 19,
+    "repaymentDate": {
+      "type": "CALCULATED",
+      "value": 20
+    },
+    "paymentMethod": "ysf",
+    "swipe": true
+  },
+  {
+    "name": "cgb-zqb",
+    "type": "cgb",
+    "title": "水钻车卡",
+    "remark": "车卡3000，其他6792",
+    "billDate": 7,
+    "repaymentDate": {
+      "type": "CALCULATED",
+      "value": 20
+    },
+    "paymentMethod": "apw",
+    "swipe": true
+  },
+  {
+    "name": "cgb",
+    "type": "cgb",
+    "title": "广发其他",
+    "billDate": 7,
+    "repaymentDate": {
+      "type": "CALCULATED",
+      "value": 20
+    }
+  },
+  {
+    "name": "ccb",
+    "type": "ccb",
+    "title": "建行",
+    "billDate": 13,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 2
+    },
+    "paymentMethod": "lzf",
+    "half": true,
+    "swipe": true
+  },
+  {
+    "name": "icbc",
+    "type": "icbc",
+    "title": "工行",
+    "billDate": 23,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 16
+    },
+    "paymentMethod": "ysf",
+    "half": true,
+    "swipe": true
+  },
+  {
+    "name": "psbc",
+    "type": "psbc",
+    "title": "邮储",
+    "billDate": 25,
+    "repaymentDate": {
+      "type": "CALCULATED",
+      "value": 20
+    },
+    "paymentMethod": "ap",
+    "swipe": true
+  },
+  {
+    "name": "psbc-qingchun",
+    "type": "psbc",
+    "title": "邮储（青）",
+    "billDate": 17,
+    "repaymentDate": {
+      "type": "CALCULATED",
+      "value": 20
+    },
+    "paymentMethod": "apw",
+    "swipe": true
+  },
+  {
+    "name": "gcb",
+    "type": "gcb",
+    "title": "广州",
+    "billDate": 8,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 28
+    }
+  },
+  {
+    "name": "gcb-2",
+    "type": "gcb",
+    "title": "南航精英白",
+    "billDate": 8,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 28
+    },
+    "paymentMethod": "ap",
+    "swipe": true
+  },
+  {
+    "name": "abc",
+    "type": "abc",
+    "title": "农行",
+    "billDate": 18,
+    "repaymentDate": {
+      "type": "CALCULATED",
+      "value": 19
+    },
+    "paymentMethod": "apw",
+    "half": true,
+    "swipe": true
+  },
+  {
+    "name": "ceb",
+    "type": "ceb",
+    "title": "光大",
+    "billDate": 12,
+    "repaymentDate": {
+      "type": "CALCULATED",
+      "value": 19
+    },
+    "paymentMethod": "ap",
+    "swipe": true
+  },
+  {
+    "name": "bjb",
+    "type": "bjb",
+    "title": "北京",
+    "billDate": 8,
+    "repaymentDate": {
+      "type": "CALCULATED",
+      "value": 20
+    },
+    "paymentMethod": "ap",
+    "swipe": true
+  },
+  {
+    "name": "cmbc-xgll",
+    "type": "cmbc",
+    "title": "香格里拉",
+    "billDate": 21,
+    "repaymentDate": {
+      "type": "CALCULATED",
+      "value": 20
+    },
+    "paymentMethod": "ap",
+    "swipe": true
+  },
+  {
+    "name": "huabei",
+    "type": "huabei",
+    "title": "花呗",
+    "billDate": -1,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 10
+    }
+  },
+  {
+    "name": "baitiao",
+    "type": "baitiao",
+    "title": "白条",
+    "billDate": 7,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 16
+    }
+  },
+  {
+    "name": "lin-zhaohang",
+    "type": "cmb",
+    "title": "林招行",
+    "billDate": 6,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 6
+    }
+  },
+  {
+    "name": "lin-guangfa",
+    "type": "cgb",
+    "title": "林广发",
+    "billDate": 6,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 6
+    }
+  },
+  {
+    "name": "lin-jianhang",
+    "type": "ccb",
+    "title": "林建行",
+    "billDate": 15,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 15
+    }
+  },
+  {
+    "name": "boca",
+    "type": "boca",
+    "title": "中行冬奥卡",
+    "remark": "2942冬奥卡被扫",
+    "billDate": 12,
+    "repaymentDate": {
+      "type": "CALCULATED",
+      "value": 20
+    },
+    "paymentMethod": "ysf",
+    "half": true,
+    "swipe": true
+  },
+  {
+    "name": "icbc-others",
+    "type": "icbc",
+    "title": "工行其他",
+    "billDate": 23,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 16
+    },
+    "paymentMethod": "ysf",
+    "half": true
+  },
+  {
+    "name": "lin-huabei",
+    "type": "huabei",
+    "title": "林花呗",
+    "billDate": 15,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 20
+    }
+  },
+  {
+    "name": "nbb",
+    "type": "nbb",
+    "title": "宁波",
+    "billDate": 15,
+    "repaymentDate": {
+      "type": "IMMUTABLE",
+      "value": 20
+    },
+    "paymentMethod": "apw",
+    "swipe": true
+  }
+]

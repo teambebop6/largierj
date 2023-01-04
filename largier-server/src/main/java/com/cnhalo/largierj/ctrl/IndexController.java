@@ -25,4 +25,9 @@ public class IndexController {
         return "ok";
     }
 
+    @GetMapping("/")
+    public ModelAndView home() {
+        return new ModelAndView("forward:/client/index.html");
+    }
+
 }
