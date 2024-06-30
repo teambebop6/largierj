@@ -28,7 +28,7 @@ function SamplePrevArrow(props) {
   );
 }
 
-const audio1Src = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1388668324&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true';
+const audio1Src = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1388668324&color=%23ff5500&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true';
 const audioStyle = {
   fontSize: 10,
   color: '#cccccc',

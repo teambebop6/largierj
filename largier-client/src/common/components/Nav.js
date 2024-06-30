@@ -25,13 +25,15 @@ export default () => (
             <Menu.Item link onClick={() => scrollTo('bioAnchor')}>
               <I18n>{t => t('bio')}</I18n>
             </Menu.Item>
+            <Menu.Item link onClick={() => scrollTo('servicesAnchor')}>
+              <I18n>{t => t('services')}</I18n>
+            </Menu.Item>
             <Menu.Item link onClick={() => scrollTo('concerts')}>
               <I18n>{t => t('concerts')}</I18n>
             </Menu.Item>
             <Menu.Item link onClick={() => scrollTo('media')}>
               <I18n>{t => t('media')}</I18n>
             </Menu.Item>
-
           </Menu>
 
         </Grid.Column>

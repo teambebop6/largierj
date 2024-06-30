@@ -18,6 +18,7 @@ import { get } from '../../common/helpers/api';
 import TopLeftLinks from '../../common/components/TopLeftLinks';
 import TopRightLinks from '../../common/components/TopRightLinks';
 import Nav from '../../common/components/Nav';
+import Footer from '../../common/components/Footer/Footer';
 import SimpleSlider from '../../common/components/Slider';
 import ConcertImageContainer from './components/ConcertImageContainer';
 // Resources
@@ -29,8 +30,6 @@ import Video from '../../res/images/largier.mp4';
 import InstagramIcon from '../../res/images/instagram.svg';
 
 import i18n from '../../i18n';
-
-import { licenseYear } from '../../config.json';
 
 class Home extends Component {
   constructor(props) {
@@ -128,6 +127,19 @@ class Home extends Component {
         { /* CONCERTS */ }
 
 
+        <Grid className="page default-grid" id="servicesAnchor">
+            <div className="sectionTitle">
+                <h2 className="title"><I18n>{t => t('services')}</I18n></h2>
+            </div>
+            <div className="bioParagraph">
+              <p><I18n>{t => t('servicesText1')}</I18n></p>
+              <p><I18n>{t => t('servicesText2')}</I18n></p>
+              <p><I18n>{t => t('servicesText3')}</I18n></p>
+              <p><I18n>{t => t('servicesText4')}</I18n></p>
+            </div>
+        </Grid>
+
+
         <Grid className="page default-grid concertsBlock" id="concerts">
           <Grid.Row>
             <Grid.Column>
@@ -163,16 +175,7 @@ class Home extends Component {
           <SimpleSlider />
         </div>
 
-        <Grid className="page default-grid">
-          <Grid.Row>
-            <Grid.Column textAlign="center">
-              <p>
-                <span>&copy;{licenseYear} chantallargier.com | </span>
-                <Link to="/admin" className="link">admin</Link>
-              </p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Footer />
 
         <StructuredData
           type="Person"
@@ -182,14 +185,15 @@ class Home extends Component {
             gender: 'Female',
             description: 'Swiss Pianist Chantal Largier is a talented, versatile and admired artist, who knows how to impress and fascinate the audience through her interpretation and a real passion for music. Her goal is to find the true spirit of music and to share it with her audience.',
             jobTitle: 'Swiss Pianist',
-            url: 'http://www.chantallargier.com',
-            image: 'http://www.chantallargier.com/avatar.jpg',
+            url: 'https://www.chantallargier.com',
+            image: 'https://www.chantallargier.com/avatar.jpg',
             sameAs: [
               'https://www.facebook.com/Chantal-Largier-1713090868989087/',
               'https://www.youtube.com/channel/UCTtRvi4HOBtmSqzJ-QrKOjQ',
             ],
           }}
         />
+
       </div>
     );
   }
