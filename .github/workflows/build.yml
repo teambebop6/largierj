@@ -3,6 +3,7 @@ name: LargierJ build
 on:
   push:
     branches:
+      - feature/*
       - main
       - main-*
 
