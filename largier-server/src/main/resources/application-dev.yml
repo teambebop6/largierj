@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:file:/Users/henry/dev/workspace/github/largierj/db
+    url: jdbc:h2:file:/Users/huangyijie/dev/workspace/github/largierj/db
   h2:
     console:
       enabled: true
@@ -13,4 +13,4 @@ log:
 upload:
   location: ./upload
 logging:
-  config: /Users/henry/dev/workspace/github/largierj/support/logback-spring.xml
+  config: /Users/huangyijie/dev/workspace/github/largierj/support/logback-spring.xml

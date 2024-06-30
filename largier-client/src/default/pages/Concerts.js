@@ -18,7 +18,7 @@ import Logo from '../../res/images/logoBlack.svg';
 
 import i18n from '../../i18n';
 
-import { licenseYear } from '../../config.json';
+import Footer from '../../common/components/Footer/Footer';
 
 
 const selectLanguage = (lng) => {
@@ -105,16 +105,7 @@ class Concerts extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Grid className="page footer-grid">
-          <Grid.Row>
-            <Grid.Column textAlign="center">
-              <p>
-                <span>&copy;{licenseYear} chantallargier.com | </span>
-                <Link to="/admin">admin</Link>
-              </p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Footer />
       </div>
     );
   }
