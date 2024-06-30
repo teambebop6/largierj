@@ -28,6 +28,7 @@ import Avatar from '../../res/images/avatar.jpg';
 import Header from '../../res/images/headerChurch.jpg';
 import Video from '../../res/images/largier.mp4';
 import InstagramIcon from '../../res/images/instagram.svg';
+import PlayerIcon from '../../res/images/player.svg';
 
 import i18n from '../../i18n';
 
@@ -53,6 +54,19 @@ class Home extends Component {
 
         <Nav />
         <div className="headerFrame" />
+
+        <Fab
+          icon={
+            <img width={50} src={PlayerIcon} alt="Play music" />
+          }
+          mainButtonStyles={{
+            backgroundColor: 'white',
+            bottom: '74px',
+          }}
+          onClick={() => {
+            window.open('https://on.soundcloud.com/vQ2N8RdFw28KTTjg6');
+          }}
+        />
 
         <Fab
           icon={
