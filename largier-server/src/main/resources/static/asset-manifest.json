@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.656793ae.css",
   "main.css.map": "static/css/main.656793ae.css.map",
-  "main.js": "static/js/main.dbe5632a.js",
-  "main.js.map": "static/js/main.dbe5632a.js.map",
+  "main.js": "static/js/main.b90e98df.js",
+  "main.js.map": "static/js/main.b90e98df.js.map",
   "static/media/avatar.jpg": "static/media/avatar.539b79bf.jpg",
   "static/media/flags.png": "static/media/flags.9c74e172.png",
   "static/media/headerChurch.jpg": "static/media/headerChurch.d7af3650.jpg",
@@ -17,6 +17,7 @@
   "static/media/logoBlack.svg": "static/media/logoBlack.b1eb02ac.svg",
   "static/media/logoWhite.svg": "static/media/logoWhite.df9001e0.svg",
   "static/media/logo_squared.png": "static/media/logo_squared.01629657.png",
+  "static/media/player.svg": "static/media/player.7b867513.svg",
   "static/media/slick.eot": "static/media/slick.ced611da.eot",
   "static/media/slick.svg": "static/media/slick.f97e3bbf.svg",
   "static/media/slick.ttf": "static/media/slick.d41f55a7.ttf",
