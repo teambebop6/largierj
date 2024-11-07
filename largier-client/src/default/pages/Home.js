@@ -21,6 +21,7 @@ import Nav from '../../common/components/Nav';
 import Footer from '../../common/components/Footer/Footer';
 import SimpleSlider from '../../common/components/Slider';
 import ConcertImageContainer from './components/ConcertImageContainer';
+
 // Resources
 import './Home.less';
 import Logo from '../../res/images/logoWhite.svg';
@@ -57,7 +58,7 @@ class Home extends Component {
 
         <Fab
           icon={
-            <img width={50} src={PlayerIcon} alt="Play music" />
+            <PlayerIcon width={50} alt="Play music" />
           }
           mainButtonStyles={{
             backgroundColor: 'white',
@@ -70,7 +71,7 @@ class Home extends Component {
 
         <Fab
           icon={
-            <img width={50} src={InstagramIcon} alt="Go go my Instagram" />
+            <InstagramIcon width={50} alt="Go go my Instagram" />
           }
           mainButtonStyles={{
             backgroundColor: 'white',
@@ -111,7 +112,7 @@ class Home extends Component {
           </div>
         </div>
 
-        { /*  BIO */ }
+        { /*  BIO */}
 
         <Grid className="page default-grid" id="bioAnchor">
           <div className="sectionTitle">
@@ -138,19 +139,19 @@ class Home extends Component {
           </div>
         </Grid>
 
-        { /* CONCERTS */ }
+        { /* CONCERTS */}
 
 
         <Grid className="page default-grid" id="servicesAnchor">
-            <div className="sectionTitle">
-                <h2 className="title"><I18n>{t => t('services')}</I18n></h2>
-            </div>
-            <div className="bioParagraph">
-              <p><I18n>{t => t('servicesText1')}</I18n></p>
-              <p><I18n>{t => t('servicesText2')}</I18n></p>
-              <p><I18n>{t => t('servicesText3')}</I18n></p>
-              <p><I18n>{t => t('servicesText4')}</I18n></p>
-            </div>
+          <div className="sectionTitle">
+            <h2 className="title"><I18n>{t => t('services')}</I18n></h2>
+          </div>
+          <div className="bioParagraph">
+            <p><I18n>{t => t('servicesText1')}</I18n></p>
+            <p><I18n>{t => t('servicesText2')}</I18n></p>
+            <p><I18n>{t => t('servicesText3')}</I18n></p>
+            <p><I18n>{t => t('servicesText4')}</I18n></p>
+          </div>
         </Grid>
 
 

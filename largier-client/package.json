@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@svgr/webpack": "^4.0.0",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -48,6 +49,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-slick": "^0.23.1",
+    "react-svg-loader": "^3.0.3",
     "react-tiny-fab": "^4.0.4",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
@@ -59,6 +61,7 @@
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
+    "use-sound": "^4.0.3",
     "video-react": "^0.10.5",
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.4",
