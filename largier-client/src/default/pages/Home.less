@@ -5,8 +5,12 @@
 @grey: #4a4a4a;
 
 @textColor: rgba(255,255,255,1);
+html {
+  height:100%;
+}
 body{
   font-family: 'Montserrat', sans-serif;
+  height:100%;
 }
 
 *{
@@ -91,9 +95,6 @@ h3{
   margin: auto 1%;
 }
 
-.largierAvatar{
-}
-
 h2.title, p.title{
   font-family: 'Montserrat', sans-serif;
   text-transform:uppercase;
@@ -114,6 +115,45 @@ video {
 .sectionTitle{
   width: 100%;
   margin: 1rem auto 2rem;
+}
+
+.main-title{
+  
+  position:absolute;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+
+  width:100%;
+  align-items: center;
+  line-height: normal;
+
+  height: 100%;
+  justify-content: center;
+
+
+
+  .title{
+  text-transform:uppercase;
+  color: white;
+  font-size:5rem;
+  font-weight:100;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin: 5px 0;
+
+  }
+
+  .subtitle{
+    color: white;
+    font-size:2.5rem;
+
+
+    font-weight: 900;
+    text-transform:uppercase;
+    font-family: 'Montserrat', sans-serif;
+  }
 }
 
 .bioParagraph{
@@ -156,7 +196,7 @@ video {
   top:0;left:0;bottom:0;right:0;
   position:absolute;
   margin: 3% 2%;
-  border:1px solid @gold;
+  border:1px solid none;
   z-index: 10;
 }
 
