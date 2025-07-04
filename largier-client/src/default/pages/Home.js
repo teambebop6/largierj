@@ -26,12 +26,14 @@ import ConcertImageContainer from './components/ConcertImageContainer';
 import './Home.less';
 import Logo from '../../res/images/logoWhite.svg';
 import Avatar from '../../res/images/avatar.jpg';
-import Header from '../../res/images/headerChurch.jpg';
+import Header from '../../res/images/homepage-hero-optimized.jpeg';
 import Video from '../../res/images/largier.mp4';
 import InstagramIcon from '../../res/images/instagram.svg';
 import PlayerIcon from '../../res/images/player.svg';
 
 import i18n from '../../i18n';
+import Services from './Services';
+import PageTitle from './components/PageTitle';
 
 class Home extends Component {
   constructor(props) {
@@ -53,8 +55,6 @@ class Home extends Component {
     return (
       <div>
 
-        <Nav />
-        <div className="headerFrame" />
 
         <Fab
           icon={
@@ -81,6 +81,11 @@ class Home extends Component {
           }}
         />
 
+        <PageTitle />
+
+        <Nav />
+
+
         <div className="headerPicture" style={{ backgroundImage: `url(${Header})` }}>
           <div className="headerContent">
             <TopLeftLinks />
@@ -97,20 +102,16 @@ class Home extends Component {
             >
               <ControlBar disabled />
             </Player>
+
             <div className="headerTextContent">
               <Image className="logo" src={Logo} centered />
-              <I18n>
-                {
-                  t => (
-                    <p className="chantalDescription">
-                      <strong>{t('swisspianist')}</strong> {t('intro')}
-                    </p>
-                  )
-                }
-              </I18n>
             </div>
           </div>
         </div>
+
+
+        <Services />
+
 
         { /*  BIO */}
 
@@ -140,19 +141,6 @@ class Home extends Component {
         </Grid>
 
         { /* CONCERTS */}
-
-
-        <Grid className="page default-grid" id="servicesAnchor">
-          <div className="sectionTitle">
-            <h2 className="title"><I18n>{t => t('services')}</I18n></h2>
-          </div>
-          <div className="bioParagraph">
-            <p><I18n>{t => t('servicesText1')}</I18n></p>
-            <p><I18n>{t => t('servicesText2')}</I18n></p>
-            <p><I18n>{t => t('servicesText3')}</I18n></p>
-            <p><I18n>{t => t('servicesText4')}</I18n></p>
-          </div>
-        </Grid>
 
 
         <Grid className="page default-grid concertsBlock" id="concerts">
