@@ -7,9 +7,22 @@ import PageTitle from './components/PageTitle';
 
 
 const LandingPage = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize(); // Set initial state
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const pageStyle = {
     backgroundImage: `url(${Hero})`,
-    height: '100vh',
     backgroundColor: '#2e1d1a', // fallback color from image palette
     display: 'flex',
     flexDirection: 'column',
@@ -20,6 +33,7 @@ const LandingPage = () => {
 
   const backgroundStyle = {
     display: 'flex',
+    flexDirection: isMobile ? 'column' : 'row',
     alignItems: 'center',
     justifyContent: 'center',
     color: '#fff',
@@ -55,10 +69,10 @@ const LandingPage = () => {
             display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2rem',
           }}
           >
-            <a href="https://instagram.com/chantal_largier_" style={{ color: '#ffe1d6', textDecoration: 'none', marginLeft: '5px' }}>
-              <img src={InstagramIcon} width={70} height={70} alt="Instagram" />
-            </a>
             Meanwhile, you can follow me on Instagram.
+            <a href="https://instagram.com/chantal_largier_" style={{ color: '#ffe1d6', textDecoration: 'none', marginLeft: '5px' }}>
+              <img src={InstagramIcon} width={70} height={70} alt="Instagram" style={{ marginTop: '1rem' }} />
+            </a>
 
             {
               // Please check out my Youtube channel too
@@ -68,7 +82,7 @@ const LandingPage = () => {
                   style={{ marginTop: '1rem', textAlign: 'center', display: 'block' }}
                   width="300"
                   height="200"
-                  src="https://www.youtube.com/embed/b5sIslt7Mt0?si=UW4iWUAGoR-uAkH4"
+                  src="https://www.youtube.com/embed/C1Pz5n7pNBE?si=N9zNK2sB3eaEjTQJ"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write;
                 encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -79,10 +93,13 @@ const LandingPage = () => {
             }
             {
               // Or contact me via email
-              <div style={{ marginTop: '1rem' }}>
-                Or contact me via email at
-                <a href="mailto:me@chantallargier.com" style={{ color: '#ffe1d6', textDecoration: 'none', marginLeft: '5px' }}>
-                  me@chantallargier.com
+              <div style={{
+                marginTop: '1rem', display: isMobile ? 'flex' : 'block', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', textAlign: 'center',
+                }}
+              >
+                <span>Or contact me via email at </span>
+                <a href="mailto:info@chantallargier.com" style={{ color: '#ffe1d6', textDecoration: 'none', marginLeft: '5px' }}>
+                  info@chantallargier.com
                 </a>
               </div>
             }
